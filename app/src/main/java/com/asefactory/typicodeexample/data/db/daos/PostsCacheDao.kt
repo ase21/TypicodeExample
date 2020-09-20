@@ -4,7 +4,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import com.asefactory.typicodeexample.data.db.entities.PostsCacheEntity
-import io.reactivex.Maybe
 import io.reactivex.Single
 
 @Dao

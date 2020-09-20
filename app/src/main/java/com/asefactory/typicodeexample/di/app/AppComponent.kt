@@ -1,6 +1,5 @@
 package com.asefactory.typicodeexample.di.app
 
-import android.app.Application
 import android.content.Context
 import com.asefactory.typicodeexample.di.post_detail.PostDetailComponent
 import com.asefactory.typicodeexample.di.post_list.PostsListComponent

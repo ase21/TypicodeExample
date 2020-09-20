@@ -4,9 +4,8 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.asefactory.typicodeexample.data.db.entities.PostsCacheEntity
 import com.asefactory.typicodeexample.di.App
-import com.asefactory.typicodeexample.model.PostsListRepositoryImpl
+import com.asefactory.typicodeexample.model.post_list.PostsListRepositoryImpl
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
