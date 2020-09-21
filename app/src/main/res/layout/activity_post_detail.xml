@@ -24,14 +24,13 @@
                 android:layout_gravity="center"
                 android:layout_margin="8dp"
                 android:layout_weight="1"
-                tools:text="Title dfs sdf sdfs df sdf sdfsdfsdfwf sdf sdf odfjlkskjhf sgd kshdhskdj hksdh kgsdkjfh " />
+                tools:text="Title " />
 
-            <RatingBar
-                android:id="@+id/ratingBar"
+            <ImageView
+                android:id="@+id/button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:numStars="1" />
+                android:layout_margin="8dp" />
         </LinearLayout>
 
         <TextView

@@ -1,8 +1,6 @@
 package com.asefactory.typicodeexample.data.db
 
-import android.content.Context
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.asefactory.typicodeexample.data.db.daos.FavoritePostsDao
 import com.asefactory.typicodeexample.data.db.daos.PostsCacheDao

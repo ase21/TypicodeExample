@@ -2,44 +2,68 @@ package com.asefactory.typicodeexample.ui.post_detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.RatingBar
-import android.widget.TextView
+import android.view.MenuItem
+import android.widget.*
 import androidx.activity.viewModels
 import com.asefactory.typicodeexample.R
 import com.asefactory.typicodeexample.data.db.entities.PostsCacheEntity
 import com.asefactory.typicodeexample.viewmodel.post_detail.PostsDetailViewModel
-import com.asefactory.typicodeexample.viewmodel.post_list.PostsListViewModel
 
 class PostDetailActivity : AppCompatActivity() {
 
     private val viewModel : PostsDetailViewModel by viewModels()
+    private lateinit var button: ImageView
+    private lateinit var titleTextView: TextView
+    private lateinit var bodyTextView: TextView
+    private lateinit var post: PostsCacheEntity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post_detail)
 
-        val titleTextView = findViewById<TextView>(R.id.titleTextView)
-        val bodyTextView = findViewById<TextView>(R.id.bodyTextView)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val ratingBar = findViewById<RatingBar>(R.id.ratingBar)
+        titleTextView = findViewById(R.id.titleTextView)
+        bodyTextView = findViewById(R.id.bodyTextView)
 
-        val post = intent.getSerializableExtra("post") as PostsCacheEntity
+        button = findViewById(R.id.button)
+
+        post = intent.getSerializableExtra("post") as PostsCacheEntity
 
         titleTextView.text = post.title
         bodyTextView.text = post.body
-        if (post.favorite){
-            ratingBar.rating = 100f
-        } else {
-            ratingBar.rating = 0f
-        }
+        setStar(post.favorite)
 
-        ratingBar.setOnClickListener(View.OnClickListener { v -> viewModel.changeFavorite(post.favorite) })
+        button.setOnClickListener { v -> viewModel.changeFavorite(post.id, post.favorite) }
 
         setObservers()
     }
 
-    private fun setObservers() {
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        finish()
+        return true
+    }
 
+    private fun setObservers() {
+        viewModel
+            .isFavorite
+            .observe(this, { setStar(it) })
+
+        viewModel
+            .throwableMessages
+            .observe(
+                this, {
+                    Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+                }
+            )
+    }
+
+    private fun setStar(favorite: Boolean) {
+        if (favorite) {
+            button.setImageResource(R.drawable.ic_star_favorite)
+        } else {
+            button.setImageResource(R.drawable.ic_star_not_favorite)
+        }
+        post.favorite = favorite
     }
 }

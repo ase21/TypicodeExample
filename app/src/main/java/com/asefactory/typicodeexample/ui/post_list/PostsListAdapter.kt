@@ -3,7 +3,7 @@ package com.asefactory.typicodeexample.ui.post_list
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RatingBar
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -40,18 +40,22 @@ class PostsListAdapter(private val listener: OnPostClickListener) : RecyclerView
         private val card = itemView.findViewById<CardView>(R.id.card)
         private val title = itemView.findViewById<TextView>(R.id.titleTextView)
         private val body = itemView.findViewById<TextView>(R.id.bodyTextView)
-        private val ratingBar = itemView.findViewById<RatingBar>(R.id.ratingBar)
+        private val starImageView = itemView.findViewById<ImageView>(R.id.starImageView)
 
         fun bind(post: PostsCacheEntity, listener: OnPostClickListener) {
             title.text = post.title
             body.text = post.body
-            if (post.favorite){
-                ratingBar.rating = 100f
-            } else {
-                ratingBar.rating = 0f
-            }
+            setStar(post.favorite)
 
             card.setOnClickListener { listener.onPostClick(post) }
+        }
+
+        private fun setStar(favorite: Boolean) {
+            if (favorite) {
+                starImageView.setImageResource(R.drawable.ic_star_favorite)
+            } else {
+                starImageView.setImageResource(R.drawable.ic_star_not_favorite)
+            }
         }
     }
 }

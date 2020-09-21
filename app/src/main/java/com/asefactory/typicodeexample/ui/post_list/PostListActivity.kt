@@ -16,7 +16,7 @@ class PostListActivity : AppCompatActivity(), PostsListAdapter.OnPostClickListen
 
     private val postsViewModel : PostsListViewModel by viewModels()
 
-    lateinit var postsListAdapter: PostsListAdapter
+    private lateinit var postsListAdapter: PostsListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
