@@ -34,7 +34,7 @@ class PostDetailActivity : AppCompatActivity() {
         bodyTextView.text = post.body
         setStar(post.favorite)
 
-        button.setOnClickListener { v -> viewModel.changeFavorite(post.id, post.favorite) }
+        button.setOnClickListener { viewModel.changeFavorite(post.id, post.favorite) }
 
         setObservers()
     }
